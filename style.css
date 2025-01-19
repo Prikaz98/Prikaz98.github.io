@@ -1,0 +1,33 @@
+body {
+    font-family: 'Iosevka Web';
+    font-weight: 400;
+    background-color: #fdf4c1;
+}
+.wrapper {
+    max-width: 800px;
+    margin: auto;
+    padding: 60px 30px 60px 30px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+ul {
+    list-style: none;
+}
+h1 {
+    color: #61ACBB;
+}
+h2 {
+    color: #d79921;
+}
+h3 {
+    color: #b16286;
+}
+p {
+    color: #1d2021;
+}
+a {
+    color: #689d6a;
+}
