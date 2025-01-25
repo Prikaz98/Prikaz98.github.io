@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<head>
+  <link
+    href="https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css"
+    rel="stylesheet"
+    />
+  <link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+  <title>My Journey from IntelliJ IDEA to Minimal Configuration Emacs</title>
+
+  <div class="wrapper">
+
+    <div class="header">
+      <ul class="no-align">
+        <li><a href="../../index.html"><-- homepage</a></li>
+                                           <li><a href="../blog.html"><-- posts</a></li>
+                                                                          </ul>
+      <h1>From IntelliJ IDEA to Minimal Emacs</h1>
+    </div>
+
+    <h3>Introduction</h3>
+    <p>My career launched at a company where everybody used IntelliJ IDEA. There
+      were developers who had already been working for a decade and had seen
+      Java IDEs like Eclipse come and go. Using IntelliJ was the default option
+      because there were no other viable tools for Scala/Java development.
+    </p>
+    <p>
+      When I started working at this company, I was a completely junior
+      developer. I didn&apos;t have a degree in a related field or much
+      practical experience. Naturally, I didn&apos;t question why my team used
+      IntelliJ IDEA or why I should use it - it worked, and it was good enough.
+    </p>
+    <i> IntelliJ IDEA does not have complicated UI</i>
+    <lable class="comment">;;just a joke</lable>
+
+    <img
+      class="img-wrapper"
+      src="./idea-overloaded-ui-meme.png"
+      />
+
+    <p>
+      But as I explored more of the IT and open-source world, I discovered Vim.
+      Its approach to navigating text blew my mind. Once I became more
+      comfortable with Vim motions, I installed plugins for every application I
+      used, like DBeaver, IntelliJ, Chrome, etc.
+    </p>
+    <img
+      class="img-wrapper"
+      src="vim-users-against-avarage-user.webp"
+      alt="https://www.reddit.com/r/ProgrammerHumor/comments/njwe14/vim_user_runs_circles_around_me_with_hjkl/"
+      />
+
+    <p>
+      At that point, I thought, &quot;OK, I have a very efficient IDE, and I have a
+      very efficient navigation. There&apos;s nothing left to surprise me.&quot; Then
+      I encountered Emacs. It wasn&apos;t love at first sight.
+      While I could see that Emacs was a cool and powerful tool, I didn&apos;t
+      initially understand how to use it effectively for modern development.
+    </p>
+
+    <h3>Why Emacs?</h3>
+    <p>
+      Time passed, and I changed jobs. At my new workplace, I was tasked with
+      editing a huge configuration file. I started doing it manually but quickly
+      realized I was essentially executing an algorithm by hand. Using Java or
+      Scala to automate the process wasn&apos;t practical because I would need
+      to deserialize the configuration into Java objects, manipulate them, and
+      then serialize them back into a file, losing the sorting and developer
+      comments in the process.
+    </p>
+    <p>
+      At that moment, I remembered Emacs. I realized I could write a function to
+      automate the changes programmatically. I installed Emacs on my laptop,
+      wrote the function, and completed the task quickly, with minimal git
+      changes that were easy for others to review.
+    </p>
+
+    <img
+      class="img-wrapper"
+      src="iq-meme-joke-i-am-not-saying-visual-studio-users-are-dumb.png"
+      alt="https://andreyor.st/posts/2023-10-27-you-dont-need-a-terminal-emulator/"
+      />
+
+    <p>
+      This experience showed me the power of a programmable editor. From that
+      point on, I started using Emacs. At first, it was just an additional text
+      editor for files that IntelliJ didn&apos;t support. But after discovering
+      Doom Emacs, everything changed. I started using Doom Emacs as my main
+      editor for working on all projects.
+    </p>
+
+    <p>
+      During this time, I discovered Magit, Dired, Restclient, Org-mode, and
+      other fantastic Emacs tools. After that, there was no turning back.
+    </p>
+
+    <p>
+      The most incredible thing I found in the Emacs ecosystem is that every
+      application strives to be as simple as possible. Each time I discovered a
+      new app that solved a problem, I was amazed at how elegant the solution
+      was.
+    <p>
+
+      <h3>Back to the origins</h3>
+    <p>
+      But the story doesn&apos;t end there. I was still using Evil-mode (Vim
+      motions in Emacs).
+    </p>
+
+    <p>
+      Evil-mode is an excellent extension, but I sometimes noticed that some
+      applications didn&apos;t work well with it. You still needed to know
+      vanilla Emacs keybindings, and things didn&apos;t always work as smoothly
+      as they could.
+    </p>
+
+    <p>
+      Eventually, I decided to learn vanilla Emacs. To be honest, I had tried
+      using vanilla Emacs before, but those attempts failed because I was trying
+      to recreate my own version of Doom Emacs (I believed that I need those all
+      features which Doom Emacs offers). This time, I focused on keeping
+      everything as simple as possible, adding new features only when absolutely
+      necessary. I either wrote custom solutions or installed packages only when
+      Emacs built-in features couldn&apos;t handle the task.
+    </p>
+
+    <p>
+      A lot has changed since then, and I love it. No more modal editing. Every
+      change I make is visible immediately in the continuous event loop, without
+      the need to predict or remember Vim commands. I can use the minibuffer
+      like any other buffer without breaking my typing flow, and the experience
+      is incredible.
+    </p>
+
+    <img
+      class="img-wrapper"
+      src="emacs4life.webp"
+      alt="https://www.reddit.com/r/ProgrammerHumor/comments/1fahsgj/emacs4life/"
+      />
+
+    <p>
+      (To solve the &apos;pinkie finger problem&apos;, I remapped LEFT ALT as
+      LEFT CTRL. Now, my right thumb presses ALT, and my left thumb presses
+      CTRL)
+    </p>
+
+    <h3>Links</h3>
+
+    <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>
+    <a href="https://eclipseide.org/">Eclipse IDE</a>
+    <a href="https://dbeaver.io/">DBeaver</a>
+    <a href="https://www.oracle.com/java/">Java</a>
+    <a href="https://www.scala-lang.org/">Scala</a>
+    <a href="https://www.vim.org/">Vim</a>
+    <a href="https://www.gnu.org/software/emacs/">Emacs</a>
+    <a href="https://github.com/doomemacs/doomemacs">Doom Emacs</a>
+    <a href="https://magit.vc/">Magit</a>
+    <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html">Dired</a>
+    <a href="https://github.com/pashky/restclient.el">Restclient</a>
+    <a href="https://orgmode.org">Org-mode</a>
+    <a href="https://github.com/emacs-evil/evil">Evil-mode</a>
+    <a href="https://github.com/jamescherti/minimal-emacs.d">Minimal Emacs</a>
+    <a href="https://www.reddit.com/r/ProgrammerHumor">Reddit ProgrammerHumor</a>
+
+    <p>
+      Date: Sat Jan 25 03:28:42 PM CET 2025
+    </p>
+  </div>
+</body>
+<html>

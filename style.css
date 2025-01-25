@@ -1,6 +1,7 @@
 body {
     font-family: 'Iosevka Web';
-    font-weight: 400;
+    font-weight: 350;
+    font-size: 18px;
     background-color: #fbf1c7;
 }
 .wrapper {
@@ -11,7 +12,11 @@ body {
 .header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    jistify-items: center;
+    align-items: center;
+}
+p {
+    text-align: justify; /* Alignment in width */
 }
 ul {
     list-style: none;
@@ -30,4 +35,24 @@ p {
 }
 a {
     color: #689d6a;
+}
+
+.img-wrapper {
+    width: 100%;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.comment {
+    color: #a89984;
+    float: right;
+}
+.no-align {
+    padding-left: 0;
+}
+.about {
+    border: 1px solid #000;
+    margin: 0px 15px 0px 15px;
+    font-size: 15px;
+    padding: 0px 15px 0px 15px;
 }
