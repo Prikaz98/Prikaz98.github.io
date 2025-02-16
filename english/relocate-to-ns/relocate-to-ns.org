@@ -1,0 +1,86 @@
+#+TITLE:     Why your company should relocate to Novi Sad?
+#+AUTHOR:    Prikaznov Ivan
+#+EMAIL:     prikaznov555@gmail.com
+#+DATE:      2025-02-16
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:2 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+
+* Why your company should relocate to Novi Sad?
+** Why your company should relocate to Novi Sad?
+
+Hello, my name is Ivan.
+
+I live in Novi Sad and in this presentation I try to show you key benefits to relocate your business in Novi Sad.
+
+#+attr_latex: :width 200px
+[[file:Novi Sad.jpg]]
+
+** Why your company should relocate to Novi Sad?
+
+There are three bullet points why your company need to relocate in Novi Sad.
+
+- _Lower_ office rent compared to Belgrade
+- Well-known universities producing _skilled specialists_
+- _Developed_ bike infrastructor
+
+Let's take a detailed look a these benefits.
+
+** Lower price of office rent than in Belgrade
+Average office price in Belgrade *28€/m2* (per month)
+
+Average office price in Novi Sad *16€/m2* (per month)
+
+#+attr_latex: :width 150px
+[[file:CompareRents.png]]
+
+A simple calculation shows that rening a 270m2 office in Novi Sad can save you almost *40,000€* every year.
+
+_This money can be reinvested in your business._
+** Reinvention areas
+
+ - Hiring more employees
+
+   If you have a free budget you can hire more people to increase productivity that facilitate business to grow
+ - Improving the office environment
+
+   Organizing office environment helps your employees feel more comfortable that support to do a work more efficiently
+ - Funding additional activities
+
+   Meetups, professional courses have a positive effects to your company
+
+** Famous Novi Sad's universities for preparing new specialists
+Your company will be near top universities, making it easier to hire highly talented and motivated specialists right after graduation.
+
+Key benefits:
+- Fresh perspectives & innovation
+
+  Young professionals bring new ideas and modern approaches that drive innovation
+- Adaptability & Eagerness to learn
+
+  They are eager to learn, take on new challenges, and develop their skills quickly
+** Novi Sad university
+[[file:NoviSadUniversity.jpg]]
+** Bike infrastructor
+A well-developed bike infrastructure allows employees to commute safely to the office.
+
+Additional benefits:
+- Phisical activity before work
+
+  Improves mood, energy levels, and overall productivity.
+- Cost Savings for Employees
+
+  Biking is significantly cheaper than owning and maintaining a car
+
+** Novi Sad Bikeability
+#+attr_latex: :width 170px
+[[file:bicikleNetworkNoviSad.png]]
+** Summary
+Relocating to Novi Sad can make your company more profitable, smarter, and healthier.
+
+Thank you!
