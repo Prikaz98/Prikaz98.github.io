@@ -4,6 +4,20 @@ body {
     font-size: 18px;
     background-color: #fbf1c7;
 }
+code {
+    font-family: 'Iosevka Web';
+}
+pre {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.keyword {
+    font-weight: 400;
+    color: #9d0006;
+}
+.s-literal {
+    color: #79740e;
+}
 .wrapper {
     max-width: 800px;
     margin: auto;

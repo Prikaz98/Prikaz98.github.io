@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<head>
+  <link
+    href="https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css"
+    rel="stylesheet"
+    />
+  <link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+  <title>A Brief Article About the Lem Editor</title>
+
+  <div class="wrapper">
+
+    <div class="header">
+      <ul class="no-align">
+        <li><a href="../../index.html">&larr; homepage</a></li>
+        <li><a href="../blog.html">&larr; posts</a></li>
+      </ul>
+      <h1>A Brief Article About the Lem Editor</h1>
+    </div>
+
+
+    <h3>Prelude</h3>
+    <p>
+      A lot of people like Emacs, but I&apos;ve never understood why there
+      haven&apos;t been any attempts to implement an editor with both a
+      <i>good customization opporutnity</i> and <i>stable core set of build-in features</i>.
+    </p>
+
+    <h3>Good Customization Opporutnities</h3>
+    <p>
+      There are many editors that allow you to write extensions, but their
+      design doesn&apos;t make it as simple as it is in Programmable Editor like
+      Emacs or Lem (write a function &rarr; feed it to the editor &rarr; run).
+      This is especially true when you need to perform tasks that require
+      hard-coded logic.
+    </p>
+
+    <img
+      class="img-wrapper"
+      src="./editors.png">
+
+    <p>
+      For example, I sometimes prepare Jira task in Emacs because it&apos;s more
+      comfortable than using Jira&apos;s web form. When I need to create a task, I
+      just call a function
+      <pre>
+        <code>(<label class="keyword">defun</label> jira-create-new-task (title)
+            <label class="s-literal">&quot;Create template file for tasks.&quot;</label>
+            (<label class="keyword">interactive</label> <label class="s-literal">&quot;sEnter titile: \n&quot;</label>)
+            ...)</code>
+      </pre>
+      by <a href="https://github.com/Prikaz98/office-utils/blob/master/jira.el">jira.el</a>.
+      Which I developed myself. <br><br>
+      Emacs then prompts me to write a title, saves the file
+      in a special directory and with special name, and after editing, I convert the
+      org-mode format to Jira format and copy it in the clipboard,
+      automatically, in fly. There&apos;s no reason to solve this problem in modern
+      editors like VS Code because it&apos;s highly specific personal workflow.
+    </p>
+
+    <h3>A Stable Set of Build-in Features</h3>
+    <p>
+      Emacs has been around for over 40 years, and during that time, certain
+      features have become essential for almost everyone. If we look at  MELPA&apos;s
+      packages list and sort it by downloads, we can see that the most popular
+      packages are:
+    </p>
+
+    <ul>
+      <li><a href="https://magit.vc/">Magit</a> - Git client for Emacs</li>
+      <li><a href="https://emacs-helm.github.io/helm/">Helm</a> - Fuzzy finding, file completions, and more</li>
+      <li><a href="https://company-mode.github.io/">Company-mode</a> - Text completions</li>
+      <li><a href="https://www.flycheck.org/en/latest/">Flycheck</a> - Syntax checking</li>
+      <li><a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html">Dired</a> - File manager (a build-in package but extremely popular)</li>
+      <li>
+        <a href="https://github.com/Alexander-Miller/treemacs">Treemacs</a> or
+        <a href="https://github.com/jaypei/emacs-neotree">Neotree</a> - Project sidebar tree</li>
+      <li><a href="https://evil.readthedocs.io/en/latest/overview.html#installation-via-package-el">Evil</a> - Vim keybindings for Emacs</li>
+      <li>(lang)-mode - Basic programing language support (indentation, syntax highlighting)</li>
+      <li><a href="https://emacs-lsp.github.io/lsp-mode/page/installation/">Lsp</a> - Integration with Language Server Protocol</li>
+      <li><a href="https://github.com/bbatsov/projectile">Projectile</a> - Project management and navigation</li>
+    </ul>
+
+    <p>
+      I believe these features like are widely used because they significantly
+      increase productivity. So why not combine them into an editor by default
+      and allows community to build their own features on top of a solid core
+      API? (fortunately it happened in Lem)
+    </p>
+
+    <h2>Why Lem is awesome!</h2>
+    <img src="lem.svg" alt="" />
+    <p>
+      <a href="https://lem-project.github.io/">Lem</a>
+      is an editor designed to address these needs.
+    </p>
+
+    <img class="img-wrapper"
+         src="./lem-demo.gif"/>
+
+    <p>
+      When I first launched it, I immediately felt at home. Everything works
+      naturally for Emacs user - but better. The defaults, like find-file,
+      execute-command, dashboard (instead of splash screen that most people
+      disable anyway :D) all felt intuitive. I&apos;ve already contributed a few
+      things in Lem project, and I love how easy it is. Common Lisp is a
+      fantastic language for an extensible editor.
+    </p>
+
+    <p>
+      One of my favorite features is that Lem can run like a regular GUI App -
+      just like I prefer in Emacs.
+    </p>
+
+    <h3>Out-of-the-box features in Lem:</h3>
+    <ul>
+      <li>
+        Dashboard
+        <img class="img-wrapper" src="./lem-dashboard.png">
+      </li>
+      <li>
+        Auto-complition
+        <img class="img-wrapper" src="./lem-autocomplete.png">
+      </li>
+      <li>
+        Multiple-cursors
+        <img class="img-wrapper" src="./lem-multicursors.png">
+      </li>
+      <li>
+        Directory mode
+        <img class="img-wrapper" src="./lem-directory.png">
+      </li>
+      <li>
+        Project commands
+        <img class="img-wrapper" src="./lem-project-function.png">
+      </li>
+      <li>
+        Legit
+        <img class="img-wrapper" src="./lem-legit.png">
+      </li>
+      <li>
+        Workspackes (frame-multiplexer)
+        <img class="img-wrapper" src="./lem-workspaces.png">
+      </li>
+      <li>
+        Polyglot editor (Lem support a huge number of programming languages)
+        <img class="img-wrapper" src="./lem-any-lang.png">
+      </li>
+    </ul>
+    <p>
+      also Tabs, Copilot, LSP and all of this is available  out of the box.
+    </p>
+
+    <p>
+      I see Lem as an evolution of Emacs/Vim editor and I hope the project
+      continues to grow and improve.
+    </p>
+
+    <p>
+      Thank you for reading, and happy hacking!
+    </p>
+
+    <p>
+      Date: Tue Feb 18 03:51:49 PM CET 2025
+    </p>
+  </div>
+</body>
+<html>
