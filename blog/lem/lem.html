@@ -23,9 +23,34 @@
 
     <h3>Prelude</h3>
     <p>
-      A lot of people like Emacs, but I&apos;ve never understood why there
-      haven&apos;t been any attempts to implement an editor with both a
-      <i>good customization opporutnity</i> and <i>stable core set of build-in features</i>.
+      I like Emacs it&apos;s extensibility is amazing, but every I've noticed
+      that to implement some new features that related with some of UI elements
+      might be very difficult - becuase you need to support a few different way
+      to show user data.
+    </p>
+    <p>
+      Like how it work in <a href="https://github.com/bbatsov/projectile">Projectile</a>
+    </p>
+
+    <pre>
+      <code>(<label class="keyword">defcustom</label> projectile-completion-system 'auto
+          <label class="s-literal">"The completion system to be used by Projectile."</label>
+          :group 'projectile
+          :type '(radio
+                 (const :tag <label class="s-literal">&quot;Auto-detect&quot;</label> auto)
+                 (const :tag <label class="s-literal">&quot;Ido&quot;</label> ido)
+                 (const :tag <label class="s-literal">&quot;Helm&quot;</label> helm)
+                 (const :tag <label class="s-literal">&quot;Ivy&quot;</label> ivy)
+                 (const :tag <label class="s-literal">&quot;Default&quot;</label> default)
+                 (function :tag <label class="s-literal">&quot;Custom function&quot;</label>)))</code>
+    </pre>
+
+    <p>
+      And I didn't find any attempts to implement an editor with benefits of
+      Emacs with <i>good customization opporutnity and extensibility</i> and modern
+      editorls like VSCode with <i>stable core set of build-in features and UI
+      components</i>.
+
     </p>
 
     <h3>Good Customization Opporutnities</h3>
