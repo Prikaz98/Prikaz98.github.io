@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<head>
+  <link
+    href="https://pvinis.github.io/iosevka-webfont/3.4.1/iosevka.css"
+    rel="stylesheet"
+    />
+  <link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+  <title>Scala Development with Emacs</title>
+
+  <div class="wrapper">
+
+    <div class="header">
+      <ul class="no-align">
+	<li><a href="../../index.html">&larr; homepage</a></li>
+	<li><a href="../blog.html">&larr; posts</a></li>
+      </ul>
+      <h1>Scala Development with Emacs</h1>
+    </div>
+
+    <h2>Prelude</h2>
+
+    <p>
+      I'm a Scala developer and an active Emacs user.<br>
+    </p>
+    <p>
+      This note is dedicated to things I've noticed while working with
+      Scala in a plain-text development environment. To find out why I
+      use Emacs you can check this remark<br>
+      <a href="../emacs-journey/emacs-journey.html">
+	My Journey from IntelliJ IDEA to Minimal Configuration Emacs</a>.
+    </p>
+
+    <h2>How to Work with Scala Code Without a Powerful IDE?</h2>
+
+    <p>
+      During my journey, I discovered that I could solve most of the
+      annoying Scala development problems on my own or by using Emacs
+      extensions.
+    </p>
+
+    <h3>Imports (Search, Sort, Remove Unused)</h3>
+
+    <p>
+      I'm not
+      using <a href="https://en.wikipedia.org/wiki/Language_Server_Protocol">LSP</a>,
+      but I needed a function that suggests imports to add. I decided to solve
+      this problem in the simplest way possible: I wrote a function that greps
+      source files and collects all existing imports into a cache file for
+      instant access.
+    </p>
+
+    <p>
+      I'm very proud of this extension because I don’t need anything
+      except grep to achieve a similar experience to find import in a
+      smart IDE.
+    </p>
+
+    <img
+      class="img-wrapper"
+      src="./scalai-find-imports.gif"/>
+
+    <p>
+      As part of this
+      extension, <a href="https://github.com/Prikaz98/office-utils/blob/master/scalai.el">scalai.el</a>,
+      I also wrote additional functions to optimize and check unused imports,
+      which helps me during editing.
+    </p>
+    
+    <h3>Rename/Refactoring</h3>
+    
+    <p>
+      I like how the built-in query-replace in Emacs works - it gives you complete
+      control over what you are changing. However, it's not always suitable for
+      more complex edits. Fortunately, Emacs has an amazing
+      extension, <a href="https://github.com/dajva/rg.el">rg.el</a>, which
+      allows you to find all occurrences across files and edit them
+      interactively inside the search results buffer.      
+    </p>
+
+    <img
+      class="img-wrapper"
+      src="./scala-ripgrep.gif">
+
+    <p>
+      This kind of refactoring lets you perform almost any edit as you would in
+      a regular buffer. It's awesome!
+    </p>
+
+    <h3>Auto-Completion</h3>
+    <p>
+      I found that simple text auto-completion covers all my needs, making a
+      full-fledged LSP unnecessary. I
+      use <a href="https://company-mode.github.io/">company.el</a> - it's
+      smooth, fast, and highly configurable.
+    </p>
+
+    <h3>Go to Definition</h3>
+
+    <p>
+      I’m comfortable just using grep/rg or navigating to a file by class name.
+      There aren’t many extra benefits beyond remembering file locations and
+      project structure. In demo I
+      used <a href="https://github.com/hvesalai/emacs-sbt-mode">sbt-mode.el</a>
+    </p>
+
+    <img
+      class="img-wrapper"
+      src="./scala-goto.gif"/>
+
+    <h2>What Changes Have I Noticed with Plain Text Development?</h2>
+    
+    <h3>Easier to Switch Between Feature Branches</h3>
+
+    <p>
+      No need to recalculate indexes or invalidate caches. Just switch the
+      branch and start editing instantly. <b>sbt clean compile</b>
+    </p>
+
+    <h3>More Thoughtful Naming of Functions and Variables</h3>
+
+    <p>
+      Since I rely on text search tools, I pay more attention to naming
+      functions and fields carefully to avoid cases where different entities
+      have the same name.
+    </p>
+
+    <h3>Better Awareness of Imports</h3>
+
+    <p>
+      By default, IDEs hide imports, which I believe is a bad approach,
+      especially for inexperienced developers. I've seen junior developers fix
+      errors by adding random imports, only to later ask why their code isn't
+      working. When I pointed out that they had used the wrong imports, they
+      were surprised.
+    </p>
+
+    <img
+      class="img-wrapper"
+      src="./intellij-imports.png"/>
+
+    <p>
+      Manually managing imports can also make code more readable. Scala has a
+      great feature called "scoped importing," which allows you to import
+      directly within a class/method/function scope.
+    </p>
+
+    <p>
+      This is especially helpful when working with boilerplate-heavy models,
+      such as Scala GRPC protobuf views.
+    </p>
+
+    <p>
+      Example:
+      <pre>
+        <code>
+<label class="keyword">import</label> grpc.{<label class="class">Drink</label>, <label class="class">Food</label>, <label class="class">Order</label>}
+
+<label class="keyword">def</label> <label class="function">extractCustomer</label>(order: <label class="class">Order</label>): <label class="class">String</label> = {
+  <label class="keyword">import</label> grpc.<label class="class">Order</label>.<label class="class">Data</label>
+
+  order <label class="keyword">match</label> {
+    <label class="keyword">case</label> <label class="class">Data</label>.<label class="class">Drink</label>(drink) => extractFromDrink(drink)
+    <label class="keyword">case</label> <label class="class">Data</label>.<label class="class">Food</label>(food) => extractFromFood(food)
+  }
+}
+
+<label class="keyword">private def</label> <label class="function">extractFromDrink</label>(drink: <label class="class">Drink</label>): <label class="class">String</label> = {
+  <label class="keyword">import</label> grpc.<label class="class">Drink</label>.<label class="class">Data</label>
+
+  drink <label class="keyword">match</label> {
+    <label class="keyword">case</label> <label class="class">Data</label>.<label class="class">Tea</label>(tea) => tea.drinker
+    <label class="keyword">case</label> <label class="class">Data</label>.<label class="class">Coffee</label>(coffee) => coffee.drinker
+  }
+}
+
+<label class="keyword">private def</label> <label class="function">extractFromFood</label>(food: <label class="class">Food</label>): <label class="class">String</label> = {
+  <label class="keyword">import</label> grpc.<label class="class">Food</label>.<label class="class">Data</label>
+
+  food <label class="keyword">match</label> {
+    <label class="keyword">case</label> <label class="class">Data</label>.<label class="class">Fish</label>(fish) => fish.eater
+    <label class="keyword">case</label> <label class="class">Data</label>.<label class="class">Vegetables</label>(veg) => veg.eater
+  }
+}</code>
+      </pre>        
+
+      <h3>Avoiding Common Bugs</h3>
+
+    <p>
+      I don't try to keep everything in my head. When I need to use a class or
+      function, I look for existing code snippets. This either helps me recall
+      how to use them or teaches me something new. If I don’t fully understand
+      what’s happening, I read the official documentation or check the library
+      sources.
+    </p>
+      
+    <p>
+      This approach helps avoid common mistakes, such as forgetting to close
+      resources or handling errors improperly.
+    </p>
+
+    <p>
+      Of course, this method has its downsides. If the code snippet I find
+      contains bugs, I might end up replicating them. However, by checking
+      multiple occurrences, I can compare and identify inconsistencies.
+    </p>
+
+    <h3>Paying More Attention to Compile Logs</h3>
+    <p>
+      When I used an IDE, I generally ignored compile logs because I relied on
+      the IDE to highlight errors. Now, I make an effort to keep my compile logs
+      clean and fix warnings as well.
+    </p>
+
+    <h3>Increased Focus on Unit Tests</h3>
+
+    <p>
+      This applies to any language I use. I’m never fully confident that my code is
+      correct because I’ve seen too many cases where either I or my coworkers were
+      too self-assured and made mistakes. Now, I like to think about new code this
+      way:
+    </p>
+    <p>"Does this code work?" – Hell if I know. Let’s run it!</p>
+    
+    <p>Date: Sat Feb 22 09:30:49 PM CET 2025</p>
+  </div>
+</body>
+<html>

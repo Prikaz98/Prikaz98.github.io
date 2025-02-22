@@ -18,6 +18,12 @@ pre {
 .s-literal {
     color: #79740e;
 }
+.function {
+    color: #b57614;
+}
+.class {
+    color: #8f3f71;
+}
 .wrapper {
     max-width: 800px;
     margin: auto;
@@ -50,7 +56,6 @@ p {
 a {
     color: #689d6a;
 }
-
 .img-wrapper {
     width: 100%;
     padding-bottom: 30px;
