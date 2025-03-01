@@ -37,6 +37,7 @@ pre {
 }
 p {
     text-align: justify; /* Alignment in width */
+    color: #1d2021;
 }
 ul {
     list-style: none;
@@ -50,9 +51,6 @@ h2 {
 h3 {
     color: #b16286;
 }
-p {
-    color: #1d2021;
-}
 a {
     color: #689d6a;
 }
@@ -61,7 +59,6 @@ a {
     padding-bottom: 30px;
     padding-top: 30px;
 }
-
 .comment {
     color: #a89984;
     float: right;
