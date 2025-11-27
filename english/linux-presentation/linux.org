@@ -1,0 +1,46 @@
+#+TITLE: The most successful person in my opinion
+#+AUTHOR: Prikaznov Ivan
+#+EMAIL: prikaznov555@gmail.com
+#+DATE:  Thu Nov 27 06:55:26 PM CET 2025
+#+LANGUAGE:  en
+#+OPTIONS:   H:2 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+
+* The most successful person in my opinion
+** Linus Torvalds
+Linus Torvalds
+#+attr_latex: :height 200px
+[[file:linus-torvalds.jpeg]]
+** Linus Torvalds
+Linus Torvalds - is a Finnish computer scientist as known as a Linux creator.
+#+attr_latex: :height 200px
+[[file:linus-torvalds.jpeg]]
+** Why he is successful
+#+attr_latex: :height 200px
+[[file:headquarters.jpeg]]
+** How many desktop computers actually use linux?
+#+attr_latex: :width 300px
+[[file:Leading-Desktop-Operating-Systems_Worldwide-by-Market-Share.jpg]]
+** Among developers
+#+attr_latex: :height 200px
+[[file:Primary-operating-system-among-professional-developers-1024x687.png]]
+** Servers
+#+attr_latex: :height 200px
+[[file:worldwide-server-operating-env2017.jpeg]]
+** Smartphones
+#+attr_latex: :height 200px
+[[file:smartphones-os.jpg]]
+** Summary
+People who are doing things for fun do things the right way by themselves.
+#+attr_latex: :height 180px
+[[file:Young-Linus-Torvalds.jpg]]
+** Links
+Linus Torvalds photo https://www.britannica.com/biography/Linus-Torvalds
+Linux logo https://en.wikipedia.org/wiki/Tux_%28mascot%29
+git logo https://git-scm.com/community/logos
+Linux statistics https://truelist.co/blog/linux-statistics/
+Red hat https://www.redhat.com/de/blog/red-hat-continues-lead-linux-server-market
+Smartphones OS https://phones4too.weebly.com/data-collection.html
