@@ -92,6 +92,7 @@
           yes_button.style.height = yes_height + "px"
           yes_button.style.fontSize = yes_font_size + 'px'
 
+          if (yes_pressed) return
           no_button.style.width = no_width + "px"
           no_button.style.height = no_height + "px"
       }
@@ -99,14 +100,17 @@
       set_size_buttons()
 
       function yes_click() {
-          if (!yes_pressed) {
-              let image = document.getElementById('image')
-              image.innerHTML = '<img src="./emotiguy-shaking.gif" alt="" />'
-              yes_pressed = true
-          }
+          if (yes_pressed) return
+          
+          let image = document.getElementById('image')
+          image.innerHTML = '<img src="./emotiguy-shaking.gif" alt="" />'
+          no_button.remove()
+          yes_pressed = true
       }
 
       function no_onfocus() {
+          if (yes_pressed) return
+          
           yes_width = Math.min(500, yes_width + 10)
           yes_height = Math.min(250, yes_height + 5)
 
