@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+IE:wght@100..400&family=Playwrite+IN+Guides&display=swap"
+      rel="stylesheet"
+    >
+
+    <style>
+      body {
+          font-family: "Playwrite IE", cursive;
+          font-optical-sizing: auto;
+          font-weight: 400;
+          font-size: 40px;
+          text-align: center;
+          font-style: normal;
+          background-color: #ffe4e1;
+      }
+
+      .content {
+          width: 800px;
+          background-color: #ffc0cb;
+          margin: auto;
+          padding: 60px 30px 60px 30px;
+          border-radius: 100px;
+      }
+
+      .button {
+          border: none;
+          border-radius: 10%;
+      }
+
+      .yes {
+        background-color: #EA4C89;
+        color: #FFFFFF;
+        font-family: "Playwrite IE", cursive;
+      }
+      
+      .yes:hover,
+      .yes:focus {
+        background-color: #F082AC;
+      }
+      
+      img {
+          width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <img src="./emotiguy-shaking.gif" alt="" /> -->
+
+    <div id="content-div" class="content">
+      DO YOU WANNA BE MY VALENTINE?
+      <br>
+      <div id="image">
+        <img src="./homjak-valentine.webp" alt="" />
+      </div>
+
+      <input
+        id="yes-btn"
+        class="button yes"
+        value="YES"
+        type="button"
+        onclick="yes_click()"
+      >
+      
+      <input
+        id="no-btn"
+        class="button"
+        value="no"
+        type="button"
+        onmouseover="no_onfocus()"
+      >
+
+    </div>
+
+    <script>
+      let yes_pressed = false
+      let yes_width = 100
+      let yes_height = 50
+      let no_width = 100
+      let no_height = 50
+      let yes_font_size = 11
+
+      let yes_button = document.getElementById('yes-btn')
+      let no_button = document.getElementById('no-btn')
+      let content_div = document.getElementById('content-div')
+
+      function set_size_buttons() {
+          yes_button.style.width = yes_width + "px"
+          yes_button.style.height = yes_height + "px"
+          yes_button.style.fontSize = yes_font_size + 'px'
+
+          no_button.style.width = no_width + "px"
+          no_button.style.height = no_height + "px"
+      }
+
+      set_size_buttons()
+
+      function yes_click() {
+          if (!yes_pressed) {
+              let image = document.getElementById('image')
+              image.innerHTML = '<img src="./emotiguy-shaking.gif" alt="" />'
+              yes_pressed = true
+          }
+      }
+
+      function no_onfocus() {
+          yes_width = Math.min(500, yes_width + 10)
+          yes_height = Math.min(250, yes_height + 5)
+
+          no_width = Math.max(50, no_width - 10)
+          no_height = Math.max(25, no_height - 5)
+
+          yes_font_size += 1
+          set_size_buttons()
+
+          let content_div_bounding = content_div.getBoundingClientRect()
+
+          no_button.style.position = "absolute"
+          no_button.style.left = content_div_bounding.left + Math.floor(Math.random() * content_div_bounding.width) + "px";
+          no_button.style.top = Math.floor(Math.random() * content_div_bounding.height) + "px";
+      }
+    </script>
+  </body>
+</html>
