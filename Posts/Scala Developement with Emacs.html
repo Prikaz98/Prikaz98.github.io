@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+    <title>Hyotion</title>
+    <div class="content" id="note">
+      <h1> Scala Development with Emacs</h1><h2> Prelude</h2><p>I'm a Scala developer and an active Emacs user.</p><p>This note is dedicated to things I've noticed while working with Scala in a plain-text development environment. To find out why I use Emacs you can check this remark</p><p>My Journey from IntelliJ IDEA to Minimal Configuration Emacs.</p><p><h2> How to Work with Scala Code Without a Powerful IDE</h2></p><p>During my journey, I discovered that I could solve most of the annoying Scala development problems on my own or by using Emacs extensions.</p><p><h3> Imports (Search, Sort, Remove Unused</h3></p><p>I'm not using <a href="https://en.wikipedia.org/wiki/Language_Server_Protocol">LSP</a>, but I needed a function that suggests imports to add. I decided to solve this problem in the simplest way possible: I wrote a function that greps source files and collects all existing imports into a cache file for instant access.</p><p>I'm very proud of this extension because I don’t need anything except grep to achieve a similar experience to find import in a smart IDE.</p><p><img src="scalai-find-imports.gif"></p><p>As part of this extension, scalai.el, I also wrote additional functions to optimize and check unused imports, which helps me during editing.</p><p><h3> Rename/Refactorin</h3></p><p>I like how the built-in query-replace in Emacs works - it gives you complete control over what you are changing. However, it's not always suitable for more complex edits. Fortunately, Emacs has an amazing extension, <a href="https://github.com/dajva/rg.el">rg.el</a>, which allows you to find all occurrences across files and edit them interactively inside the search results buffer.</p><p><img src="scala-ripgrep.gif"></p><p>This kind of refactoring lets you perform almost any edit as you would in a regular buffer. It's awesome!</p><p><h3> Auto-Completio</h3></p><p>I found that simple text auto-completion covers all my needs, making a full-fledged LSP unnecessary. I use <a href="https://company-mode.github.io/">company.el</a> - it's smooth, fast, and highly configurable.</p><p><h3> Go to Definitio</h3></p><p>I’m comfortable just using grep/rg or navigating to a file by class name. There aren’t many extra benefits beyond remembering file locations and project structure. In demo I used <a href="https://github.com/hvesalai/emacs-sbt-mode">sbt-mode.el</a></p><p><img src="scala-goto.gif"></p><p><h2> What Changes Have I Noticed with Plain Text Development</h2></p><p><h3> Easier to Switch Between Feature Branche</h3></p><p>No need to recalculate indexes or invalidate caches. Just switch the branch and start editing instantly. <b>sbt clean compile</b></p><p><h3> More Thoughtful Naming of Functions and Variable</h3></p><p>Since I rely on text search tools, I pay more attention to naming functions and fields carefully to avoid cases where different entities have the same name.</p><p><h3> Better Awareness of Import</h3></p><p>By default, IDEs hide imports, which I believe is a bad approach, especially for inexperienced developers. I've seen junior developers fix errors by adding random imports, only to later ask why their code isn't working. When I pointed out that they had used the wrong imports, they were surprised.</p><p><img src="266be9c6-c256-41ea-b73e-796b34700d55-image.png"></p><p>Manually managing imports can also make code more readable. Scala has a great feature called "scoped importing," which allows you to import directly within a class/method/function scope.</p><p>This is especially helpful when working with boilerplate-heavy models, such as Scala GRPC protobuf views.</p><p>Example:</p><pre>	import grpc.{Drink, Food, Order}
+
+	def extractCustomer(order: Order): String = {
+	  import grpc.Order.Data
+	  order match {
+		case Data.Drink(drink) => extractFromDrink(drink)
+		case Data.Food(food) => extractFromFood(food)
+	  }
+	}
+
+	private def extractFromDrink(drink: Drink): String = {
+	  import grpc.Drink.Data
+	  drink match {
+		case Data.Tea(tea) => tea.drinker
+		case Data.Coffee(coffee) => coffee.drinker
+	  }
+	}
+
+	private def extractFromFood(food: Food): String = {
+	  import grpc.Food.Data
+	  food match {
+		case Data.Fish(fish) => fish.eater
+		case Data.Vegetables(veg) => veg.eater
+	  }
+	}</pre><p><h3> Avoiding Common Bug</h3></p><p>I don't try to keep everything in my head. When I need to use a class or function, I look for existing code snippets. This either helps me recall how to use them or teaches me something new. If I don’t fully understand what’s happening, I read the official documentation or check the library sources.</p><p>This approach helps avoid common mistakes, such as forgetting to close resources or handling errors improperly.</p><p>Of course, this method has its downsides. If the code snippet I find contains bugs, I might end up replicating them. However, by checking multiple occurrences, I can compare and identify inconsistencies.</p><p><h3> Paying More Attention to Compile Log</h3></p><p>When I used an IDE, I generally ignored compile logs because I relied on the IDE to highlight errors. Now, I make an effort to keep my compile logs clean and fix warnings as well.</p><p><h3> Increased Focus on Unit Test</h3></p><p>This applies to any language I use. I’m never fully confident that my code is correct because I’ve seen too many cases where either I or my coworkers were too self-assured and made mistakes. Now, I like to think about new code this way:</p><p>"Does this code work?" – Hell if I know. Let’s run it!</p><p>Date: Sat Feb 22 09:30:49 PM CET 2025</p>
+    </div>
+  </body>
+</html>
