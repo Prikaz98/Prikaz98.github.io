@@ -1,0 +1,388 @@
+1. How to work with Scala code without powerful IDE
+Write code and perform a compile loop.
+(edit -> compile -> resolve error/warnings)
+
+2. The most annoying things while writing a code
+- Imports (search and sort, remove unused)
+- Refactoring
+- Auto-completion
+- Go to definition
+
+3. How I solved it for myself
+- I wrote a simple Scalai package for Emacs that has a number of
+useful function. For instance `scalai-find-import` just greps `.scala`
+files in whole project and collect set of existing imports with a few
+transformation (in case when imports collapsed). To optimization I
+cached this imports in file and that works pretty nice.
+
+To remove unused imports optimize function looking for a class name in
+content of the file and if it isn't here I function comments. Of
+course with ignore special imports that stored in my
+configuration.
+
+<gif>
+
+- `rg.el` To refactor it's the best solution which I
+  found. Even better than how it perform in Intellij. Just find all
+  entries and edit it in this area interactively. You see everything
+  what you edit.
+
+- I found that simple text auto-complete covers all needed and keeping
+  smart LSP isn't necessary. I use `company` package for Emacs
+
+- Grep or looking for a class according an imports in current file.
+
+4. Which benefits I've got (in my opinion)
+
+- Easy to jump between sort of the feature branches.
+I don't need to recalculate indexes and invalidate caches. Just switch
+branch and edit instantly. `sbt clean compile`
+
+- Care about name function and variables.
+To simplify a search of this a term or function. And that help to
+predict field or function name of an instance of class.
+
+- Care about imports.
+By default Intellij IDE is hiding imports. I assume that bad
+approach, especially for not experienced developers. I see how Jun Dev
+in my company just fix an error via putting random imports in file. After
+this they asked my why their code doesn't work. When I pointed out
+that they are using wrong imports in file they were surprised.
+
+To write more readable code I manage position of imports as well. Scala
+has a pretty nice feature `scope importing` which allows you to import
+something directly into a scope of class/method/function etc.
+Instead of writing this.
+
+```scala
+import grpc.{Drink, Food, Order}
+
+def extractCustomer(order: Order): String = {
+  import grpc.Order.Data
+
+  order match {
+    case Data.Drink(drink) => extractFromDrink(drink)
+    case Data.Food(food) => extractFromFood(food)
+  }
+}
+
+private def extractFromDrink(drink: Drink): String = {
+  import grpc.Drink.Data
+
+  drink match {
+    case Data.Tee(tee) => tee.drinker
+    case Data.Coffee(coffee) => coffee.drinker
+  }
+}
+
+private def extractFromFood(food: Food): String = {
+  import grpc.Food.Data
+
+  food match {
+    case Data.Fish(fish) => fish.eater
+    case Data.Vegitables(veg) => vef.eater
+  }
+}
+
+```
+
+
+- When I need to write a code with using some library in project first
+  I search a existing code examples. Sometimes it helps to avoid to do
+  some usual bugs like closing resources or stuff like that. When I don't
+  understand that usage I go to official doc and learn how it works.
+
+- Read compile logs (errors/warnings). When I wrote code in IDE in
+general I didn't care about compile logs because I run everything in
+IDE and fix only things that IDE highlighted. Now I try to keep my
+compile logs clear and fix warning as well.
+
+- More focused on unit test.
+It works with any language which I use. I always not confident of code
+correctness because I had a lot of cases when I or my coworkers were
+too self-confident. And know, I like to think about new code in that
+way: `Does this code work? - Hell if I know. Let's run it!`
+
+- Code readability. If code that I wrote I don't understand or it looks
+difficult then I start to refactoring.
+
+- Edit, Compile
+When I worked in IDE I always tried to avoid case when IDE highlights
+an error by some psychological reasons or just scared that IDE lose
+their head. I didn't even think that I can copy some text in my source
+file and edit it until it would be correct. Now, I edit source files
+according by my knowledge and when I ready to check errors I run a
+compile task. I feel ultimately free to do anything what I want with
+sources.
+
+-------
+# Scala development with Emacs
+
+I'm Scala developer and active Emacs user. This is a story of my
+migration from Intellij IDEA to Emacs. [link]
+
+This note is dedicated to things which I'm noticed by
+plain text development.
+
+# How to work with Scala code without powerful IDE?
+
+During my journey I found that I can solve the most annoying Scala
+development problem by my own or using Emacs extensions.
+
+- Imports (search, sort, remove unused)
+I'm not using LSP, but I need to have a function that offers me an
+import to add. I decided to solve this problem by the simplest way. I
+wrote a function that `grep`s sources and collect all existing imports
+in cache file to instant access.
+
+I very proud of this extension because I don't need anything except
+`grep` to get similar experience like `find import` in smart IDE.
+
+<gif>
+
+In bound of this extension, `scalai.el`, I wrote a few additional
+functions to optimize imports and check unused. That also helps me
+during the editing.
+
+<gif>
+
+- Rename/Refactoring
+I like how work build-in `query-replace` in Emacs. Exactly know what
+you are changing. But it is not suitable for more complex
+editing. Fortunately Emacs has an amazing extension `rg.el` that
+allows you find all entries in all files and edit it interactively
+inside the `searching result buffer`.
+
+This kind of refactoring lets you perform almost any editing as you
+can in common buffer. That awesome!
+
+- Auto-completion
+I found that simple text auto-complete covers all needed and keeping
+  smart LSP isn't necessary. I use `company.el` - smooth, fast and
+  configurable.
+
+- Go to definition
+I feel well just grep/rg or go to the file according class name.
+There is not extra benefits except remembering files location, and
+project structure.
+
+# What changes I've noticed by simple source editing?
+
+- Easy to jump between sort of feature branches.
+No need to recalculate indexes and invalidate caches. Just switch
+branch and edit instantly. `sbt clean compile`
+
+- Care about name function/variables.
+Because I just use text search tools I concern to name function/fields
+carefully to avoid cases when different terms have the same name.
+
+- Care about imports.
+By default IDEs are hiding imports. I assume that bad approach,
+especially for not experienced developers. I saw how Jun. Dev.
+just fixed an errors via putting random imports in file. After
+this, they asked me, why their code doesn't work. When I pointed out
+that they are using wrong imports they were surprised.
+
+Manual imports managing is also might be useful to write more readable
+code. Scala has a pretty nice feature `scope importing` which allows
+you to import directly into a scope of class/method/function
+etc.
+
+Very helpful when you need to work with boilerplate model, for example
+Scala GRPC protobuf view.
+
+Example:
+```scala
+import grpc.{Drink, Food, Order}
+
+def extractCustomer(order: Order): String = {
+  import grpc.Order.Data
+
+  order match {
+    case Data.Drink(drink) => extractFromDrink(drink)
+    case Data.Food(food) => extractFromFood(food)
+  }
+}
+
+private def extractFromDrink(drink: Drink): String = {
+  import grpc.Drink.Data
+
+  drink match {
+    case Data.Tee(tee) => tee.drinker
+    case Data.Coffee(coffee) => coffee.drinker
+  }
+}
+
+private def extractFromFood(food: Food): String = {
+  import grpc.Food.Data
+
+  food match {
+    case Data.Fish(fish) => fish.eater
+    case Data.Vegitables(veg) => vef.eater
+  }
+}
+
+```
+
+- Avoiding a common bugs
+I don't try to keep everything in mind. When I need to write a code
+using some special class/function I look for an existing code
+snippets and either I recall or learn how use it. If I don't
+clearly understand what there is happening then I read official
+documentation or check library sources.
+
+This approach helps to avoid repeating common mistakes like
+closing resources, handling errors.
+;;Of course there is a problem with this approach. If found code snippet
+;;is buggy. But even in that case I can check a few found places and
+;;compare them
+
+- Take care about compile logs
+When I wrote code in IDE in general I didn't care about compile logs
+because I run everything in IDE and fix only things that IDE
+highlighted. Now I try to keep my compile logs clear and fix warning
+as well.
+
+- More focused on unit test.
+It works with any language which I use. I always not confident of code
+correctness because I had a lot of cases when I or my coworkers were
+too self-confident. And now, I like to think about new code in that
+way: `Does this code work? - Hell if I know. Let's run it!`
+
+
+---chat gpt version
+
+Scala Development with Emacs
+
+I'm a Scala developer and an active Emacs user. This is the story of my
+migration from IntelliJ IDEA to Emacs. [link]
+
+This note is dedicated to things I've noticed while working with Scala
+in a plain-text development environment.
+
+How to Work with Scala Code Without a Powerful IDE?
+
+During my journey, I discovered that I could solve most of the annoying
+Scala development problems on my own or by using Emacs extensions.
+
+Imports (Search, Sort, Remove Unused)
+
+I'm not using LSP, but I needed a function that suggests imports to add.
+I decided to solve this problem in the simplest way possible: I wrote
+a function that greps source files and collects all existing imports
+into a cache file for instant access.
+
+I'm very proud of this extension because I don’t need anything except
+grep to achieve a similar experience to find import in a smart IDE.
+
+As part of this extension, scalai.el, I also wrote additional
+functions to optimize and check unused imports, which helps me during editing.
+
+Rename/Refactoring
+
+I like how the built-in query-replace in Emacs works—it gives you complete
+control over what you are changing. However, it's not always suitable
+for more complex edits. Fortunately, Emacs has an amazing extension,
+rg.el, which allows you to find all occurrences across files and edit
+them interactively inside the search results buffer.
+
+This kind of refactoring lets you perform almost any edit as you would in a regular buffer. It's awesome!
+
+Auto-Completion
+
+I found that simple text auto-completion covers all my needs, making a
+full-fledged LSP unnecessary. I use company.el—it's smooth, fast, and
+highly configurable.
+
+Go to Definition
+
+I’m comfortable just using grep/rg or navigating to a file by class name.
+There aren’t many extra benefits beyond remembering file locations and
+project structure.
+
+What Changes Have I Noticed with Plain Text Development?
+
+Easier to Switch Between Feature Branches
+
+No need to recalculate indexes or invalidate caches. Just switch
+the branch and start editing instantly. sbt clean compile
+
+More Thoughtful Naming of Functions and Variables
+
+Since I rely on text search tools, I pay more attention to naming functions
+and fields carefully to avoid cases where different entities have the same name.
+
+Better Awareness of Imports
+
+By default, IDEs hide imports, which I believe is a bad approach,
+especially for inexperienced developers. I've seen junior developers
+fix errors by adding random imports, only to later ask why their code
+isn't working. When I pointed out that they had used the wrong imports,
+they were surprised.
+
+Manually managing imports can also make code more readable. Scala has
+a great feature called "scoped importing," which allows you to import
+directly within a class/method/function scope.
+
+This is especially helpful when working with boilerplate-heavy models,
+such as Scala GRPC protobuf views.
+
+Example:
+```
+import grpc.{Drink, Food, Order}
+
+def extractCustomer(order: Order): String = {
+  import grpc.Order.Data
+
+  order match {
+    case Data.Drink(drink) => extractFromDrink(drink)
+    case Data.Food(food) => extractFromFood(food)
+  }
+}
+
+private def extractFromDrink(drink: Drink): String = {
+  import grpc.Drink.Data
+
+  drink match {
+    case Data.Tea(tea) => tea.drinker
+    case Data.Coffee(coffee) => coffee.drinker
+  }
+}
+
+private def extractFromFood(food: Food): String = {
+  import grpc.Food.Data
+
+  food match {
+    case Data.Fish(fish) => fish.eater
+    case Data.Vegetables(veg) => veg.eater
+  }
+}
+```
+
+Avoiding Common Bugs
+
+I don't try to keep everything in my head. When I need to use a class or function,
+I look for existing code snippets. This either helps me recall how to use them
+or teaches me something new. If I don’t fully understand what’s happening,
+I read the official documentation or check the library sources.
+
+This approach helps avoid common mistakes, such as forgetting to close resources
+or handling errors improperly.
+
+Of course, this method has its downsides. If the code snippet I find contains bugs,
+I might end up replicating them. However, by checking multiple occurrences,
+I can compare and identify inconsistencies.
+
+Paying More Attention to Compile Logs
+
+When I used an IDE, I generally ignored compile logs because I relied on
+the IDE to highlight errors. Now, I make an effort to keep my compile logs
+clean and fix warnings as well.
+
+Increased Focus on Unit Tests
+
+This applies to any language I use. I’m never fully confident that my code is
+correct because I’ve seen too many cases where either I or my coworkers were
+too self-assured and made mistakes. Now, I like to think about new code this way:
+
+"Does this code work?" – Hell if I know. Let’s run it!

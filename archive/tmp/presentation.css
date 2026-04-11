@@ -1,0 +1,40 @@
+body {
+    background-color: black;
+    font-family: 'Fira Sans';
+    font-weight: 360;
+    font-size: 40px;
+    height: 86vh;
+}
+.window {
+    max-width: 1200px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 60px 100px 60px 100px;
+    background-color: white;
+    min-height: 100%;
+}
+h3 {
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 50px;
+}
+.content {
+    margin: 10px 0px 0px 0px;
+    text-align: justify;
+}
+
+footer {
+    position: absolute;
+    bottom: 15px;
+    display: flex;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+#canvas {
+    padding-top: 20px;
+    margin: auto;
+    display: block;
+}
